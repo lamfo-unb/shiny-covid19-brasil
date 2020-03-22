@@ -105,7 +105,6 @@ vars_ <- function(dados, estado){
   return(vari)
 }
 
-
 historico_estado <-  vars_(
   dados = resumo_estado, 
   estado = unique(resumo_estado[['estado']])
@@ -138,9 +137,25 @@ variacao_estado <- dplyr::left_join(
   estados_bras[,c('estado', 'regiao')],
   by = 'estado'
   )
+
 colunas <- c("estado", "regiao","variavel", "var_7d", "var_3d", "var_1d", "valor_atual")
 variacao_estado <- variacao_estado[, colunas]
 
-feather::write_feather(resumo_estado, 'dados/tratado/resumo-estado.feather')
-feather::write_feather(historico_estado, 'dados/tratado/historico-estilizado-estado.feather')
-feather::write_feather(variacao_estado, 'dados/tratado/variacao-estado.feather')
+
+data.table::fwrite(
+  x = resumo_estado,
+  file = 'dados/tratado/resumo-estado.csv',
+  sep = '\t', na = '', dec = ','
+)
+
+data.table::fwrite(
+  x = historico_estado,
+  file = 'dados/tratado/historico-estilizado-estado.csv',
+  sep = '\t', na = '', dec = ','
+)
+
+data.table::fwrite(
+  x = variacao_estado, file = 'dados/tratado/variacao-estado.csv',
+  sep = '\t', na = '', dec = ','
+)
+

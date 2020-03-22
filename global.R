@@ -1,8 +1,11 @@
 library(ggplot2)
 library(dplyr)
 
-dados <- feather::read_feather('dados/tratado/resumo-estado.feather')
-variacao_estado <- feather::read_feather('dados/tratado/variacao-estado.feather')
+
+if(!all(sapply(c('resumo_estado', 'variacao_estado'), exists))){
+  print('Carregando dados..')
+  source('helper/carregar-data.R', encoding = 'UTF-8')
+}
 
 sumarizar_brasil <- function(variacao_estado){
   sumario <- variacao_estado %>% 
@@ -21,7 +24,7 @@ sumarizar_brasil <- function(variacao_estado){
 sumario <- sumarizar_brasil(variacao_estado)
 
 
-regioes <- unique(sort(dados$regiao))
+regioes <- unique(sort(resumo_estado$regiao))
 
 filtrar_estado <- function(dados, estados){
   dados %>% 

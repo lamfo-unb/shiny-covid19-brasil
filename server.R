@@ -2,8 +2,8 @@
 shiny::shinyServer(function(input, output, session){
   
   df_regiao <- shiny::reactive({
-    if(is.null(input$regiao))return(dados)
-    filtrar_regiao(dados = dados, regioes = input$regiao)
+    if(is.null(input$regiao))return(resumo_estado)
+    filtrar_regiao(dados = resumo_estado, regioes = input$regiao)
   })
   
   output$ui_estado <- shiny::renderUI({
