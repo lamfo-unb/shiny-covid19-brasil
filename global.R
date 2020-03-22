@@ -21,11 +21,6 @@ sumarizar_brasil <- function(variacao_estado){
   return(sumario)
 }
 
-sumario <- sumarizar_brasil(variacao_estado)
-
-
-regioes <- unique(sort(resumo_estado$regiao))
-
 filtrar_estado <- function(dados, estados){
   dados %>% 
     filter(estado %in% estados)
@@ -56,4 +51,7 @@ plotar <- function(dados){
  plotly::ggplotly(grafico)
 }
 
+date_update <- tail(resumo_estado[['date']], 1)
+sumario <- sumarizar_brasil(variacao_estado)
+regioes <- unique(sort(resumo_estado$regiao))
 

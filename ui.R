@@ -14,7 +14,8 @@ fonte_dados = tags$div(
   style='text-align:center;padding-top:25px;',
   tags$p(tags$a(
     href = 'https://coronavirus.saude.gov.br/',
-    target = "_blank", 'Fonte: Ministério da saúde'
+    target = "_blank", 'Fonte: Ministério da Saúde',br(),
+    paste('Atualização: ', date_update, sep = '')
   )
   )
 )
