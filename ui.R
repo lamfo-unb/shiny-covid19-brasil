@@ -20,10 +20,10 @@ sidebar <- dashboardSidebar(
 
 body <- dashboardBody(
   shiny::fluidRow(
-    valueBox('Brasil: Casos confirmados', value = sumario$confirmados, icon = icon('exclamation'), width = 3),
-    valueBox('Brasil: Casos suspeitos', value = sumario$suspeitos, width = 3, icon = icon('exclamation')),
-    valueBox('Brasil: Casos descartados', value = sumario$descartados,icon = icon('exclamation'), width = 3),
-    valueBox('Brasil: Mortes', value = sumario$mortes, icon = icon('exclamation'), width = 3)
+    valueBox('Brasil: Casos confirmados', value = sumario$confirmados, icon = icon('user-md'), color = 'blue', width = 3),
+    valueBox('Brasil: Casos suspeitos', value = sumario$suspeitos, width = 3, icon = icon('briefcase-medical'), color = 'light-blue'),
+    valueBox('Brasil: Casos descartados', value = sumario$descartados,icon = icon('heart'), color = 'green', width = 3),
+    valueBox('Brasil: Mortes', value = sumario$mortes, icon = icon('exclamation'), color = 'red',  width = 3)
     ),
   shiny::fluidRow(box(plotly::plotlyOutput('grafico'), width = 12)),
   shiny::fluidRow(box(DT::dataTableOutput('variacao'), width = 12))
