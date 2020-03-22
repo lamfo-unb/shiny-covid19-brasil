@@ -7,7 +7,7 @@
 
 # Arquivos .csv temporarios
 dados/tmp/*.csv
-dados/dados/bruto/*.csv
+dados/bruto/*.csv
 dados/*.csv
 
 
