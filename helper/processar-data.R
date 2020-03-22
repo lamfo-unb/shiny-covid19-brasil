@@ -142,20 +142,22 @@ colunas <- c("estado", "regiao","variavel", "var_7d", "var_3d", "var_1d", "valor
 variacao_estado <- variacao_estado[, colunas]
 
 
+path_dir <- "C:/Users/INFOWAY/repositorios/data/covid-brasil"
 data.table::fwrite(
   x = resumo_estado,
-  file = 'dados/tratado/resumo-estado.csv',
+  file = paste(path_dir, 'resumo-estado.csv', sep = '/'),
   sep = '\t', na = '', dec = ','
 )
 
 data.table::fwrite(
   x = historico_estado,
-  file = 'dados/tratado/historico-estilizado-estado.csv',
+  file = paste(path_dir, 'historico-estilizado-estado.csv', sep = '/'),
   sep = '\t', na = '', dec = ','
 )
 
 data.table::fwrite(
-  x = variacao_estado, file = 'dados/tratado/variacao-estado.csv',
+  x = variacao_estado,
+  file = paste(path_dir, 'variacao-estado.csv', sep = '/'),
   sep = '\t', na = '', dec = ','
 )
 
