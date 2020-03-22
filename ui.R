@@ -10,12 +10,23 @@ header <- dashboardHeader(
           class = "dropdown")
 )
 
+fonte_dados = tags$div(
+  style='text-align:center;padding-top:25px;',
+  tags$p(tags$a(
+    href = 'https://coronavirus.saude.gov.br/',
+    target = "_blank", 'Fonte: Ministério da saúde'
+  )
+  )
+)
+
+
 sidebar <- dashboardSidebar(
   shiny::selectInput(inputId = 'regiao', label = 'Região', choices = regioes,
                      multiple = TRUE, selected = NULL),
   shiny::uiOutput('ui_estado'),
   shiny::uiOutput('ui_variavel'),
-  shiny::uiOutput('ui_action')
+  shiny::uiOutput('ui_action'),
+  fonte_dados
 )
 
 body <- dashboardBody(
