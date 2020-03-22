@@ -5,8 +5,8 @@ account: neuremberg-de-matos
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1977321
-bundleId: 2908605
+bundleId: 2909328
 url: https://neuremberg-de-matos.shinyapps.io/dash-covid-lamfo/
-when: 1584890982.07076
+when: 1584902324.32763
 asMultiple: FALSE
 asStatic: FALSE
