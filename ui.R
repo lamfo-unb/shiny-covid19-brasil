@@ -3,7 +3,7 @@ library(shinycssloaders)
 
 header <- dashboardHeader(
   title = 'Coronavirus no Brasil',
-  tags$li(a(href = 'http://lamfo.unb.br/index.php?lang=pt-br',
+  tags$li(a(href = 'http://lamfo.unb.br/index.php?lang=pt-br', target = "_blank",
             img(src = 'lamfo-logo.png',
                 title = "Lamfo-UnB", height = "40px"),
             style = "padding-top:5px; padding-bottom:5px;"),
