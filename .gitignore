@@ -5,6 +5,9 @@
 # Session Data files
 .RData
 
+# Files deploy shiny apps
+rsconnect/*
+
 # Arquivos .csv temporarios
 dados/tmp/*.csv
 dados/bruto/*.csv
