@@ -85,7 +85,7 @@ shiny::shinyServer(function(input, output, session){
       width = 12,
       filter = 'top',
       rownames = FALSE,
-      options = list(pageLenght = 10, autoWidth = TRUE, scrollX = TRUE)
+      options = list(pageLenght = 10, autoWidth = TRUE, scrollX = TRUE, order = list(6,'desc'))
     )
     
     col_var <- c('Variação 7 dias', 'Variação 3 dias', 'Variação 1 dia')
