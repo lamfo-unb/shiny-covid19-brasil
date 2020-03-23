@@ -89,7 +89,7 @@ shiny::shinyServer(function(input, output, session){
     )
     
     col_var <- c('Variação 7 dias', 'Variação 3 dias', 'Variação 1 dia')
-    dt_ <- DT::formatRound(dt_, columns = col_var, digits = 3)
+    dt_ <- DT::formatRound(dt_, columns = col_var, digits = 3, dec.mark = ',', mark ='.')
     DT::formatRound(dt_, columns = 'Casos atuais', digits = 0, mark = '.')
   })
   
