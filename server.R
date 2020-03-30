@@ -46,6 +46,9 @@ shiny::shinyServer(function(input, output, session){
     plotar(dados = df_plot())
   })
   
+  output$seir <- plotly::renderPlotly({
+    plot_seir(dados = output2)
+  })
   
   table_variacao <- shiny::reactive({
     

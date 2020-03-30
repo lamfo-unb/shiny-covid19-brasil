@@ -38,6 +38,7 @@ body <- dashboardBody(
     valueBox('Brasil: Mortes', value = sumario$mortes, icon = icon('exclamation'), color = 'red',  width = 3)
     ),
   shiny::fluidRow(box(plotly::plotlyOutput('grafico'), width = 12)),
+  shiny::fluidRow(box(plotly::plotlyOutput('seir'), width = 12)),
   shiny::fluidRow(box(DT::dataTableOutput('variacao'), width = 12))
   )
 
