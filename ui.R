@@ -27,7 +27,13 @@ sidebar <- dashboardSidebar(
   shiny::uiOutput('ui_estado'),
   shiny::uiOutput('ui_variavel'),
   shiny::uiOutput('ui_action'),
+  shiny::numericInput("tx_contato", "Taxa de Contato", 10, min = 1, max = 100),
+  shiny::numericInput("prob_trans", "Probabilidade de transmisssao", 0.17, min = 0, max = 1, step = 0.01),
+  shiny::numericInput("periodo_infec", "Periodo de infeccao", 12, min = 1, max = 20),
+  shiny::numericInput("periodo_laten", "Periodo de Incubacao", 6, min = 1, max = 20),
+  shiny::uiOutput('action_mod'),
   fonte_dados
+
 )
 
 body <- dashboardBody(
@@ -38,7 +44,7 @@ body <- dashboardBody(
     valueBox('Brasil: Mortes', value = sumario$mortes, icon = icon('exclamation'), color = 'red',  width = 3)
     ),
   shiny::fluidRow(box(plotly::plotlyOutput('grafico'), width = 12)),
-  shiny::fluidRow(box(plotly::plotlyOutput('seir'), width = 12)),
+  shiny::fluidRow(box(plotly::plotlyOutput('plot_seir'), width = 12)),
   shiny::fluidRow(box(DT::dataTableOutput('variacao'), width = 12))
   )
 

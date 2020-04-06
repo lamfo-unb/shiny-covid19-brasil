@@ -46,9 +46,53 @@ shiny::shinyServer(function(input, output, session){
     plotar(dados = df_plot())
   })
   
-  output$seir <- plotly::renderPlotly({
-    plot_seir(dados = output2)
+  mod_param <- reactive({
+    
+    N <- 211289547 # População do Brasil
+    
+    # Valores populacao
+    X = 1       # infeccioso (infectados)
+    Y = 0                    # recuperados
+    Z = 2                    # expostos (2 ?)
+    W = N - (X + Z)          # suscetiveis
+    
+    taxa_contato <- input$tx_contato                
+    prob_transmisssao <- input$prob_trans           
+    periodo_infeccao <- input$periodo_infec         
+    periodo_latencia <- input$periodo_laten         
+    
+    beta_value = taxa_contato * prob_transmisssao
+    gamma_value = 1 / periodo_infeccao
+    delta_value = 1 / periodo_latencia
+    
+    Ro = beta_value / gamma_value
+    #Ro = 2.8
+    
+    par_list = c(beta = beta_value, gamma = gamma_value, delta = delta_value)
+    init_values = c(S = W/N, E = X/N, I = Y/N, R = Z/N)
+    
+    return(list(par_list = par_list,
+                valor_inicial = init_values))
   })
+  
+  mod_seir <- reactive({
+    
+    req(input$atualizar_mod)
+    tempo = 1:100
+    output = lsoda (mod_param()$valor_inicial, tempo, SEIR, mod_param()$par_list)
+    
+    output2 <- output %>%
+      as.data.frame() %>%
+      gather("Estado", "Valor", 2:5)
+    
+    return(list(output2 = output2))
+    
+  })
+    
+   output$plot_seir <- plotly::renderPlotly({
+     req(input$atualizar_mod)
+     plot_seir(dados = mod_seir()$output2)
+   })
   
   table_variacao <- shiny::reactive({
     
@@ -98,6 +142,10 @@ shiny::shinyServer(function(input, output, session){
   
   output$ui_action <- shiny::renderUI(
     shiny::actionButton('atualizar', 'Visualizar', icon = icon('play-circle'), width = '200px')
+  )
+  
+  output$action_mod <- shiny::renderUI(
+    shiny::actionButton('atualizar_mod', 'Plotar SEIR', icon = icon('play-circle'), width = '200px')
   )
   
 })
